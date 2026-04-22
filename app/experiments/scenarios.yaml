@@ -1,0 +1,48 @@
+scenarios:
+  - name: "Максимальная скорость (допускается высокая d)"
+    constraints: {t_max: 20, s_min: 0.0, d_max: 1.0}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Максимальная криптостойкость (без ограничения времени)"
+    constraints: {t_max: 10000, s_min: 1.0, d_max: 1.0}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Минимальная детектируемость"
+    constraints: {t_max: 10000, s_min: 0.0, d_max: 0.2}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Баланс: жёсткое время, средняя стойкость"
+    constraints: {t_max: 60, s_min: 0.7, d_max: 0.5}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Невыполнимо: быстро + s=1.0 + d≤0.2 (компромисс)"
+    constraints: {t_max: 50, s_min: 1.0, d_max: 0.2}
+    weights: {w1: 1, w2: 2, w3: 3}
+
+  - name: "AES-256 + низкая детектируемость"
+    constraints: {t_max: 250, s_min: 1.0, d_max: 0.3}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Edge: минимальное время"
+    constraints: {t_max: 15, s_min: 0.0, d_max: 1.0}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Edge: только AES-128 по скорости"
+    constraints: {t_max: 30, s_min: 0.8, d_max: 0.5}
+    weights: {w1: 1, w2: 1, w3: 1}
+
+  - name: "Приоритет криптостойкости в компромиссе"
+    constraints: {t_max: 20, s_min: 1.0, d_max: 0.5}
+    weights: {w1: 1, w2: 5, w3: 1}
+
+  - name: "Приоритет скорости в компромиссе"
+    constraints: {t_max: 20, s_min: 1.0, d_max: 0.2}
+    weights: {w1: 5, w2: 1, w3: 1}
+
+  - name: "Приоритет скрытности в компромиссе"
+    constraints: {t_max: 30, s_min: 1.0, d_max: 0.15}
+    weights: {w1: 1, w2: 1, w3: 5}
+
+  - name: "Валидация на криптере D"
+    constraints: {t_max: 100, s_min: 0.8, d_max: 0.4}
+    weights: {w1: 1, w2: 1, w3: 1}

@@ -1,0 +1,37 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# C++ build
+crypters/build/
+crypters/out/
+*.obj
+*.exe
+*.dll
+*.lib
+*.exp
+
+# Data / runtime artifacts (не коммитим бинарные БД и логи прогонов)
+app/db/crypters.db
+data/metrics_raw.csv
+data/runs/
+*.log
