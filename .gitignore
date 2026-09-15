@@ -35,3 +35,7 @@ app/db/crypters.db
 data/metrics_raw.csv
 data/runs/
 *.log
+
+# Локальные заметки/память (не для репо)
+.claude/
+docs/

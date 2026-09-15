@@ -34,6 +34,48 @@ Path aggregates over `P = (v1..v6)`: `T(P) = Σt`, `S(P) = max s`, `E(P) = mean 
 `D(P) = 1 − Π(1−d)`. Edge weights capture transition overhead (e.g. AES→LZMA is
 costly since encrypted data compresses poorly).
 
+```mermaid
+flowchart LR
+    subgraph L1["L1 — read"]
+        v_read["v_read"]
+    end
+    subgraph L2["L2 — encrypt"]
+        v_XOR["v_XOR"]
+        v_AES128["v_AES128"]
+        v_AES256["v_AES256"]
+    end
+    subgraph L3["L3 — compress"]
+        v_nocomp["v_nocomp"]
+        v_LZ4["v_LZ4"]
+        v_LZMA["v_LZMA"]
+    end
+    subgraph L4["L4 — obfuscate stub"]
+        v_noobf["v_noobf"]
+        v_meta["v_meta"]
+        v_virt["v_virt"]
+        v_poly["v_poly"]
+    end
+    subgraph L5["L5 — stub + inject"]
+        v_stubgen["v_stubgen"]
+    end
+    subgraph L6["L6 — execute"]
+        v_exec["v_exec"]
+    end
+
+    v_read --> v_XOR & v_AES128 & v_AES256
+    v_XOR --> v_nocomp & v_LZ4 & v_LZMA
+    v_AES128 --> v_nocomp & v_LZ4 & v_LZMA
+    v_AES256 --> v_nocomp & v_LZ4 & v_LZMA
+    v_nocomp --> v_noobf & v_meta & v_virt & v_poly
+    v_LZ4 --> v_noobf & v_meta & v_virt & v_poly
+    v_LZMA --> v_noobf & v_meta & v_virt & v_poly
+    v_noobf --> v_stubgen
+    v_meta --> v_stubgen
+    v_virt --> v_stubgen
+    v_poly --> v_stubgen
+    v_stubgen --> v_exec
+```
+
 ## Repository layout
 
 ```
